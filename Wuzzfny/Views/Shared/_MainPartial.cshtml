@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@Page.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 
 </head>
@@ -18,7 +19,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Wuzzfny", "Index", "Home", null, new { @class = "navbar-brand" })
+                <a href="#" class="navbar-brand logo-link">
+                    <img src="https://wuzzuf.net/images/brand/beta-logo.svg" class="logo-link" />
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -45,7 +48,7 @@
                     <li>
                         @using (@Html.BeginForm("Search", "Home", FormMethod.Post))
                             {
-                        <input class="input-sm" name="searchName" placeholder="Search For...." id="searchName" type="" />
+                        <input class="input-sm" name="searchName" placeholder="Search For...." id="searchName" />
                             }
                     </li>
                 </ul>
