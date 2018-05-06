@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Page.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Wuzzfny", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="~/Home">
+                            <i class="fas fa-home"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Home/About">
+                            <i class="fas fa-question-circle"></i>
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Home/Contact">
+
+                            <i class="fas fa-mobile-alt"></i>
+                            Contact
+                        </a>
+                    </li>
+
+                    <li>
+                        @using (@Html.BeginForm("Search", "Home", FormMethod.Post))
+                            {
+                        <input class="input-sm" name="searchName" placeholder="Search For...." id="searchName" type="" />
+                            }
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    <hr />
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="social-btns-wrapper ">
+                        <a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fab fa-twitter-square" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                        </div>
+                    </div>
+                    <ul class="footer-links list-inline">
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Recruitment Services</a></li>
+                        <li><a href="#">RSS</a></li>
+                        <li><a href="#">User Agreement</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Sitemap</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#" target="_blank">وظائف مصر</a></li>
+                    </ul>
+                    <div class="copyrights">&copy; 2018 WUZZUF. All Rights Reserved. Owned by <a style="color: #FFF;font-size: 11px;">BasharSoft LLC</a></li>.</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
