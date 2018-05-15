@@ -53,3 +53,6 @@ c:\users\user\documents\visual studio 2013\Projects\Wuzzfny\Wuzzfny\bin\Microsof
 c:\users\user\documents\visual studio 2013\Projects\Wuzzfny\Wuzzfny\obj\Debug\Wuzzfny.csprojResolveAssemblyReference.cache
 c:\users\user\documents\visual studio 2013\Projects\Wuzzfny\Wuzzfny\obj\Debug\Wuzzfny.dll
 c:\users\user\documents\visual studio 2013\Projects\Wuzzfny\Wuzzfny\obj\Debug\Wuzzfny.pdb
+C:\Users\user\documents\visual studio 2013\Projects\Wuzzfny\Wuzzfny\obj\Debug\Wuzzfny.Migrations.InitialCreate.resources
+C:\Users\user\documents\visual studio 2013\Projects\Wuzzfny\Wuzzfny\obj\Debug\Wuzzfny.csproj.GenerateResource.Cache
+C:\Users\user\documents\visual studio 2013\Projects\Wuzzfny\Wuzzfny\obj\Debug\Wuzzfny.Migrations.AddColumn.resources

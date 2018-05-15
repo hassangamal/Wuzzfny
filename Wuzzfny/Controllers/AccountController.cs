@@ -66,6 +66,7 @@ namespace Wuzzfny.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.UserType = new SelectList(new[] { "publisher", "searcher" });
             return View();
         }
 
@@ -78,7 +79,8 @@ namespace Wuzzfny.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName };
+                ViewBag.UserType = new SelectList(new[] { "publisher", "searcher" });
+                var user = new ApplicationUser (){ UserName = model.UserName, UserType = model.UserType };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
