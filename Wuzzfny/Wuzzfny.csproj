@@ -159,7 +159,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -171,9 +173,23 @@
     <Compile Include="Migrations\201805151452053_AddColumn.Designer.cs">
       <DependentUpon>201805151452053_AddColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806272036116_AddCategory_table.cs" />
+    <Compile Include="Migrations\201806272036116_AddCategory_table.Designer.cs">
+      <DependentUpon>201806272036116_AddCategory_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806272041409_AddCategory_table1.cs" />
+    <Compile Include="Migrations\201806272041409_AddCategory_table1.Designer.cs">
+      <DependentUpon>201806272041409_AddCategory_table1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806272323354_Addjobstable.cs" />
+    <Compile Include="Migrations\201806272323354_Addjobstable.Designer.cs">
+      <DependentUpon>201806272323354_Addjobstable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Job.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -226,9 +242,20 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Jobs\Create.cshtml" />
+    <Content Include="Views\Jobs\Delete.cshtml" />
+    <Content Include="Views\Jobs\Details.cshtml" />
+    <Content Include="Views\Jobs\Edit.cshtml" />
+    <Content Include="Views\Jobs\Index.cshtml" />
+    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\Delete.cshtml" />
+    <Content Include="Views\Category\Details.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -243,6 +270,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805151452053_AddColumn.resx">
       <DependentUpon>201805151452053_AddColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806272036116_AddCategory_table.resx">
+      <DependentUpon>201806272036116_AddCategory_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806272041409_AddCategory_table1.resx">
+      <DependentUpon>201806272041409_AddCategory_table1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806272323354_Addjobstable.resx">
+      <DependentUpon>201806272323354_Addjobstable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

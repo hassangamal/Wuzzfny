@@ -14,5 +14,9 @@ namespace Wuzzfny.Models
             : base("DefaultConnection")
         {
         }
+
+        public System.Data.Entity.DbSet<Wuzzfny.Models.Category> Categories { get; set; }
+
+        public System.Data.Entity.DbSet<Wuzzfny.Models.Job> Jobs { get; set; }
     }
 }

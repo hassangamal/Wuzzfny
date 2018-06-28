@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.ComponentModel;
+namespace Wuzzfny.Models
+{
+    public class Job
+    {
+        public int Id { get; set; }
+        [DisplayName("Job Title")]
+        public string JobTitle { get; set; }
+        [DisplayName("Job Content")]
+        public string JobContent { get; set; }
+        [DisplayName("Job Image")]
+        public string JobImage { get; set; }
+        [DisplayName("Job Tybe")]
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
+    }
+}
