@@ -9,12 +9,12 @@ namespace Wuzzfny.Models
     {
         public int Id { get; set; }
         [Required]
-        [Display(Name="Job Type")]
+        [Display(Name="Category Type")]
         public string CategoryName { get; set; }
         [Required]
-        [Display(Name="Job Discripe")]
+        [Display(Name="Job Discription")]
         public string CategoryDescription { get; set; }
-        public ICollection<Job>Jobs { get; set; }
+        public virtual ICollection<Job>Jobs { get; set; }
        
     }
 } 

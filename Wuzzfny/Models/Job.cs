@@ -10,12 +10,12 @@ namespace Wuzzfny.Models
         public int Id { get; set; }
         [DisplayName("Job Title")]
         public string JobTitle { get; set; }
-        [DisplayName("Job Content")]
+        [DisplayName("Job Desciption")]
         public string JobContent { get; set; }
         [DisplayName("Job Image")]
         public string JobImage { get; set; }
         [DisplayName("Job Tybe")]
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

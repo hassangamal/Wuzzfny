@@ -7,11 +7,14 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Jobs", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
+        <div class="alert alert-danger" id="error-div" style="display:none">
+            <span id="view-alert"></span>
+        </div>
         <h4>Job</h4>
         <hr />
         @Html.ValidationSummary(true)
@@ -36,7 +39,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.JobImage, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.JobImage)
+                <input type="file" name="upload" id="JobImage" />
                 @Html.ValidationMessageFor(model => model.JobImage)
             </div>
         </div>
@@ -51,7 +54,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" id="save" />
             </div>
         </div>
     </div>
@@ -60,3 +63,21 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+@section scripts{
+    <script>
+        $(function () {
+            var z = 1;
+            $('#save').click(function () {
+                if ($('#JobImage').val() == "") {
+                    $("#error-div").fadeIn();
+                    if (z==1) {
+                        $("#view-alert").append("please,chosse photo to your job");
+                        z++;
+                    }
+                    return false;
+                }
+
+            })
+        })
+    </script>
+}

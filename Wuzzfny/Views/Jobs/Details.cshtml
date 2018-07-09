@@ -9,7 +9,7 @@
 
 <div>
     <h4>Job</h4>
-	<hr />
+    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Category.CategoryName)
@@ -38,10 +38,10 @@
         <dt>
             @Html.DisplayNameFor(model => model.JobImage)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.JobImage)
+            <img src="~/Uploads/@Html.DisplayFor(model=>model.JobImage)" class="thumbnail" style="width:40px; height:40px;" />
         </dd>
+
 
     </dl>
 </div>
