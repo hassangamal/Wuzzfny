@@ -54,7 +54,7 @@ namespace Wuzzfny.Controllers
             if (ModelState.IsValid)
             {
                 string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
-                upload.SaveAs(path);    
+                upload.SaveAs(path);
                 job.JobImage = upload.FileName;
                 db.Jobs.Add(job);
                 db.SaveChanges();
@@ -90,9 +90,15 @@ namespace Wuzzfny.Controllers
         {
             if (ModelState.IsValid)
             {
-                string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
-                upload.SaveAs(path);
-                job.JobImage = upload.FileName;
+                string old_path = Path.Combine(Server.MapPath("~/Uploads"), job.JobImage);
+
+                if (upload != null)
+                {
+                    System.IO.File.Delete(old_path);
+                    string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
+                    upload.SaveAs(path);
+                    job.JobImage = upload.FileName;
+                }
                 db.Entry(job).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

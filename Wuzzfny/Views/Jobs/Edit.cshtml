@@ -19,6 +19,7 @@
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.JobImage)
 
         <div class="form-group">
             @Html.LabelFor(model => model.JobTitle, new { @class = "control-label col-md-2" })
@@ -39,7 +40,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.JobImage, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="upload" id="JobImage" />
+                <input type="file" name="upload" id="myImage" />
                 @Html.ValidationMessageFor(model => model.JobImage)
             </div>
         </div>
@@ -66,18 +67,38 @@
 @section scripts{
     <script>
         $(function () {
-            var z = 1;
-            $('#save').click(function () {
-                if ($('#JobImage').val() == "") {
-                    $("#error-div").fadeIn();
-                    if (z==1) {
-                        $("#view-alert").append("please,chosse photo to your job");
-                        z++;
-                    }
-                    return false;
-                }
+            $("#save").click(function () {
+                //// check if input is empty
 
-            })
-        })
+                //if($('#JobImage').val()=="")
+                //{
+                //    $('#error-div').fadeIn();
+                //    $('#view-alert').append("please select photo");
+                //    return false;
+                //}
+
+                // check if the image extention is vaild
+
+                if ($("#myImage").val() != "") {
+                    var filename = $("#myImage").val();
+                    //imge.png==>> png
+                    var extensoinImg = filename.split('.');
+                    var vaildextension = ["jpg", "png", "gif", "bmp"];
+                    if ($.inArray(extensoinImg[extensoinImg.length - 1], vaildextension) == -1) {
+                        $("#error-div").fadeIn();
+                        $("#view-alert").append("please select vaild type of image");
+                        return false;
+                    }
+
+                    //check if the image size is vaild 2 mb
+                    var myfilesize = document.getElementById("myImage").files[0].size / 1024 / 1024;
+                    if (myfilesize >= 2) {
+                        $("#error-div").fadeIn();
+                        $("#view-alert").append("please select small photo");
+                        return false;
+                    }
+                }
+            });
+        });
     </script>
 }
