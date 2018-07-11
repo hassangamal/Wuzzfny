@@ -15,11 +15,12 @@ namespace Wuzzfny.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
         }
-
+        
         public AccountController(UserManager<ApplicationUser> userManager)
         {
             UserManager = userManager;
@@ -66,7 +67,7 @@ namespace Wuzzfny.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.UserType = new SelectList(new[] { "publisher", "searcher" });
+            ViewBag.UserType = new SelectList(db.Roles.Where(a=>!a.Name.Contains("Adminstrator")).ToList(),"Name","Name");
             return View();
         }
 
@@ -79,12 +80,14 @@ namespace Wuzzfny.Controllers
         {
             if (ModelState.IsValid)
             {
-                ViewBag.UserType = new SelectList(new[] { "publisher", "searcher" });
+                ViewBag.UserType = new SelectList(db.Roles.Where(a => !a.Name.Contains("Adminstrator")).ToList(), "Name", "Name");
                 var user = new ApplicationUser (){ UserName = model.UserName, UserType = model.UserType };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    // remember browser:false
                     await SignInAsync(user, isPersistent: false);
+                    await UserManager.AddToRoleAsync(user.Id, model.UserType);
                     return RedirectToAction("Index", "Home");
                 }
                 else
