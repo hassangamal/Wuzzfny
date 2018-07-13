@@ -15,6 +15,14 @@ namespace Wuzzfny.Controllers
             var list = db.Categories.ToList();
             return View(list);
         }
+        public ActionResult Details(int JobId)
+        {
+            var job = db.Jobs.Find(JobId);
+            if(job==null)
+            { return HttpNotFound(); }
+            return View(job);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

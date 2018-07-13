@@ -10,10 +10,11 @@ using Wuzzfny.Models;
 
 namespace Wuzzfny.Controllers
 {
+    [Authorize(Roles ="Admins")]
     public class CategoryController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        [AllowAnonymous]
         // GET: /Category/
         public ActionResult Index()
         {

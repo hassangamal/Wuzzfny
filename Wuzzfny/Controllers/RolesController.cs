@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Wuzzfny.Models;
 namespace Wuzzfny.Controllers
 {
+    [Authorize(Roles = "Admins")]
     public class RolesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

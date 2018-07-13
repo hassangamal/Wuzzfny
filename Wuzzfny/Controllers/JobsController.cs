@@ -11,6 +11,7 @@ using System.IO;
 
 namespace Wuzzfny.Controllers
 {
+    [Authorize]
     public class JobsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
