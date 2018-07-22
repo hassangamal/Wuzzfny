@@ -18,5 +18,8 @@ namespace Wuzzfny.Models
         public System.Data.Entity.DbSet<Wuzzfny.Models.Category> Categories { get; set; }
 
         public System.Data.Entity.DbSet<Wuzzfny.Models.Job> Jobs { get; set; }
+
+        public System.Data.Entity.DbSet<Wuzzfny.Models.ApplyForJob> ApplyForJobs { get; set; }
+
     }
 }

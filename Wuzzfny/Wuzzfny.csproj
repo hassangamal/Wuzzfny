@@ -189,8 +189,13 @@
     <Compile Include="Migrations\201806272323354_Addjobstable.Designer.cs">
       <DependentUpon>201806272323354_Addjobstable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807221941311_applyfojob.cs" />
+    <Compile Include="Migrations\201807221941311_applyfojob.Designer.cs">
+      <DependentUpon>201807221941311_applyfojob.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplyForJob.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Job.cs" />
@@ -263,6 +268,7 @@
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Delete.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\Apply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -290,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806272323354_Addjobstable.resx">
       <DependentUpon>201806272323354_Addjobstable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807221941311_applyfojob.resx">
+      <DependentUpon>201807221941311_applyfojob.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
