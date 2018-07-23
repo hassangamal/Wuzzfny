@@ -1,0 +1,43 @@
+﻿@model Wuzzfny.Models.ApplyForJob
+
+@{
+    ViewBag.Title = "DetailsForJob";
+    Layout = "~/Views/Shared/_MainPartial.cshtml";
+}
+
+<h2>DetailsForJob</h2>
+
+<div>
+    <h4>ApplyForJob</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Job.JobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Job.JobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplyDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "GetJobsByUser")
+</p>

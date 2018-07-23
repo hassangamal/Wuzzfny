@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -53,6 +54,71 @@ namespace Wuzzfny.Controllers
             }
             return View();
         }
+        [Authorize]
+        public ActionResult GetJobsByUser ()
+        {
+            var UserId = User.Identity.GetUserId();
+            var Jobs = db.ApplyForJobs.Where(a => a.UserId == UserId);
+            return View(Jobs.ToList());
+        }
+        [Authorize]
+        public ActionResult DetailsForJob(int id)
+        {
+            var job = db.ApplyForJobs.Find(id);
+
+            if(job==null)
+            {
+                return HttpNotFound();
+            }
+            return View(job);
+
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var Job = db.ApplyForJobs.Find(id);
+            if (Job == null)
+            {
+                return HttpNotFound();
+            }
+            return View(Job);
+        }
+        
+        [HttpPost]
+        public ActionResult Edit(ApplyForJob job)
+        {
+            if (ModelState.IsValid)
+            {
+                job.ApplyDate = DateTime.Now;
+                db.Entry(job).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("GetJobsByUser");
+            }
+            return View(job);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var job = db.ApplyForJobs.Find(id);
+            if (job == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(job);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(ApplyForJob job)
+        {
+            var myjob = db.ApplyForJobs.Find(job.Id);
+            db.ApplyForJobs.Remove(myjob);
+            db.SaveChanges();
+
+            return RedirectToAction("GetJobsByUser");
+        }
+
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
