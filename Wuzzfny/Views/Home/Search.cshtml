@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Wuzzfny.Models.Job>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_MainPartial.cshtml";
+}
+
+<div class="panel panel-default" style="padding:20px;">
+    <h2>Search Result</h2>
+    <div class="row">
+        @foreach (var subItem in Model)
+            {
+            <div class="col-md-3 thumbnail" style="margin-left:20px;margin-bottom:30px; height:500px">
+                <img src="~/Uploads/@subItem.JobImage" />
+                <h3>@Html.DisplayFor(modelItem => subItem.JobTitle)</h3>
+                <h3>@Html.DisplayFor(modelItem => subItem.JobContent)</h3>
+                @Html.ActionLink("Details", "Details", new { JobId = subItem.Id }, new { @class = "btn btn-primary" })
+            </div>
+        }
+    </div>
+</div>

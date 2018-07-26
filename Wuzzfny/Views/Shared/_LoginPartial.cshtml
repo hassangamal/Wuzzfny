@@ -1,16 +1,66 @@
 ﻿@using Microsoft.AspNet.Identity
+@using Wuzzfny.Models
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
+        var db = new ApplicationDbContext();
+        var UserId = User.Identity.GetUserId();
+        var CurrentUser = db.Users.Where(a => a.Id == UserId).SingleOrDefault();
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <strong>Hello @CurrentUser.UserName</strong>
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="nav">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <p class="text-center">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                    </p>
+                                </div>
+                                <div class="col-lg-8">
+                                    <p class="text-right">
+                                        <strong>
+                                            @CurrentUser.UserName
+                                        </strong>
+                                    </p>
+                                    @if (CurrentUser.UserType == "publisher")
+                                    {
+                                        <a href="~/Home/GetJobsByPublisher" class="btn btn-success">jobs you are publish</a>
+                                        <a href="~/Jobs/Create" class="btn btn-success">Create New job</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="~/Home/GetJobsByUser" class="btn btn-success btn-block">jobs you are apply in  </a>
+                                    }
+                                    <a href="#" class="btn btn-primary btn-block">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p>
+                                        <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-danger btn-block">Log off</a>
+                                    </p>
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+            </li>
+        </ul>
     }
 }
 else
