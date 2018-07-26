@@ -20,7 +20,7 @@ namespace Wuzzfny.Controllers
         public ActionResult Details(int JobId)
         {
             var job = db.Jobs.Find(JobId);
-            if(job==null)
+            if (job == null)
             { return HttpNotFound(); }
             Session["JobId"] = JobId;
             return View(job);
@@ -36,7 +36,7 @@ namespace Wuzzfny.Controllers
             var UserId = User.Identity.GetUserId();
             var JobId = (int)Session["JobId"];
             var check = db.ApplyForJobs.Where(a => a.JobId == JobId && a.UserId == UserId).ToList();
-            if(check.Count<1)
+            if (check.Count < 1)
             {
 
                 var job = new ApplyForJob();
@@ -55,7 +55,7 @@ namespace Wuzzfny.Controllers
             return View();
         }
         [Authorize]
-        public ActionResult GetJobsByUser ()
+        public ActionResult GetJobsByUser()
         {
             var UserId = User.Identity.GetUserId();
             var Jobs = db.ApplyForJobs.Where(a => a.UserId == UserId);
@@ -66,13 +66,14 @@ namespace Wuzzfny.Controllers
         {
             var job = db.ApplyForJobs.Find(id);
 
-            if(job==null)
+            if (job == null)
             {
                 return HttpNotFound();
             }
             return View(job);
 
         }
+
 
         public ActionResult Edit(int id)
         {
@@ -83,7 +84,7 @@ namespace Wuzzfny.Controllers
             }
             return View(Job);
         }
-        
+
         [HttpPost]
         public ActionResult Edit(ApplyForJob job)
         {
@@ -117,8 +118,26 @@ namespace Wuzzfny.Controllers
 
             return RedirectToAction("GetJobsByUser");
         }
+        [Authorize]
+        public ActionResult GetJobsByPublisher()
+        {
+            var UserId = User.Identity.GetUserId();
+            var Jobs = from app in db.ApplyForJobs
+                       join job in db.Jobs
+                       on app.JobId equals job.Id
+                       where job.User.Id == UserId
+                       select app;
+            var group = from j in Jobs
+                        group j by j.Job.JobTitle
+                       into gr
+                        select new JobsViewModel
+                        {
+                            JobTitle = gr.Key,
+                            Items = gr
+                        };
 
-
+            return View(group.ToList());
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -132,6 +151,6 @@ namespace Wuzzfny.Controllers
 
             return View();
         }
-        
+
     }
 }

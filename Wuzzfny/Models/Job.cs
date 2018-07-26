@@ -14,8 +14,10 @@ namespace Wuzzfny.Models
         public string JobContent { get; set; }
         [DisplayName("Job Image")]
         public string JobImage { get; set; }
+        public string UserId { get; set; }
         [DisplayName("Job Tybe")]
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

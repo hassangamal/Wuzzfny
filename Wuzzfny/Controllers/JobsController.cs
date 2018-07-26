@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Wuzzfny.Models;
 using System.IO;
+using Microsoft.AspNet.Identity;
 
 namespace Wuzzfny.Controllers
 {
@@ -42,6 +43,7 @@ namespace Wuzzfny.Controllers
         public ActionResult Create()
         {
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName");
+
             return View();
         }
 
@@ -57,6 +59,7 @@ namespace Wuzzfny.Controllers
                 string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
                 upload.SaveAs(path);
                 job.JobImage = upload.FileName;
+                job.UserId = User.Identity.GetUserId();
                 db.Jobs.Add(job);
                 db.SaveChanges();
                 return RedirectToAction("Index");

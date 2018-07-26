@@ -121,3 +121,4 @@ C:\Users\user\Documents\Visual Studio 2015\Projects\Wuzzfny\Wuzzfny\obj\Debug\Wu
 C:\Users\user\Documents\Visual Studio 2015\Projects\Wuzzfny\Wuzzfny\obj\Debug\Wuzzfny.dll
 C:\Users\user\Documents\Visual Studio 2015\Projects\Wuzzfny\Wuzzfny\obj\Debug\Wuzzfny.pdb
 C:\Users\user\Documents\Visual Studio 2015\Projects\Wuzzfny\Wuzzfny\obj\Debug\Wuzzfny.Migrations.applyfojob.resources
+C:\Users\user\Documents\Visual Studio 2015\Projects\Wuzzfny\Wuzzfny\obj\Debug\Wuzzfny.Migrations.editModel.resources
