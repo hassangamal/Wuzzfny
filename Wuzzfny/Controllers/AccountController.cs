@@ -99,7 +99,37 @@ namespace Wuzzfny.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
+        public ActionResult EditProfile()
+        {
+            var UserId = User.Identity.GetUserId();
+            var user = db.Users.Where(a => a.Id == UserId).SingleOrDefault();
+            EditProfileViewModel profile = new EditProfileViewModel();
+            profile.UserName = user.UserName;
+            return View(profile);
+        }
+        [HttpPost]
+        public ActionResult EditProfile(EditProfileViewModel profile)
+        {
+            var UserId = User.Identity.GetUserId();
+            var CurrentUser = db.Users.Where(a => a.Id == UserId).SingleOrDefault();
+            var lastPassword = UserManager.PasswordHasher.HashPassword(profile.CurrentPassword);
+            var user = UserManager.Find(profile.UserName, profile.CurrentPassword);
+            //if (CurrentUser.PasswordHash!=lastPassword)
+            if(user==null)
+            {
+                ViewBag.Message = "Current Password Not Vaild";
+            }
+            else
+            {
+                var newPassword = UserManager.PasswordHasher.HashPassword(profile.NewPassword);
+                CurrentUser.UserName = profile.UserName;
+                CurrentUser.PasswordHash = newPassword;
+                db.Entry(CurrentUser).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.Message = "Current Password Updated" ;
+            }
+            return View(profile);
+        }
         //
         // POST: /Account/Disassociate
         [HttpPost]
